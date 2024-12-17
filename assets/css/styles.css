@@ -1,0 +1,107 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and general styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the footer is pushed to the bottom */
+    justify-content: flex-start; /* Ensures content is at the top */
+}
+
+/* Navbar Styling */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: green;
+    color: white;
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav .logo img {
+    height: 40px; /* Adjust logo size */
+}
+
+nav h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-left: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #45a049;
+}
+
+/* Welcome Section (Card Design) */
+#welcome {
+    max-width: 900px;
+    margin: 8rem 4rem; /* Center horizontally and adjust top margin for navbar */
+    padding: 40px;
+    text-align: center;
+    background-color: green; /* Light card background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+#welcome h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#welcome p {
+    font-size: 1.2rem;
+    color: lightgrey;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: darkgreen;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Pushes footer to the bottom */
+    width: 100%;
+}
