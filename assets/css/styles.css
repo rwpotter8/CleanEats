@@ -192,40 +192,14 @@ iframe {
     max-width: 300px;
 }
 
-#category-filter {
+#category-filter,
+#chef-filter {
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 25%;
     max-width: 200px;
-}
-
-/* For smaller devices like phones (less than 600px wide) */
-@media only screen and (max-width: 600px) {
-    body {
-        padding-top: 100px; /* Increased top padding for smaller screens */
-    }
-
-    .search-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    #search-input, #category-filter {
-        width: 90%; /* Ensure both inputs take up most of the screen */
-    }
-
-    #search-input {
-        padding: 12px;
-        font-size: 1.1rem;
-    }
-
-    #category-filter {
-        padding: 12px;
-        font-size: 1.1rem;
-    }
 }
 
 /* Modal styles */
@@ -367,8 +341,6 @@ ol {
         font-size: 1.5rem;
     }
 
-
-
     .recipe-list {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 15px;
@@ -398,6 +370,30 @@ ol {
 
     iframe {
         height: 500px;
+    }
+
+    body {
+        padding-top: 100px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #search-input, #category-filter {
+        width: 90%;
+    }
+
+    #search-input {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    #category-filter {
+        padding: 12px;
+        font-size: 1.1rem;
     }
 }
 

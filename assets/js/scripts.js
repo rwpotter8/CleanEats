@@ -8,6 +8,7 @@ function fetchRecipes() {
             window.recipes = recipes;  // Store the recipes globally for filtering
             displayRecipes(recipes);   // Display all recipes initially
             populateCategoryFilter(recipes); // Populate the category dropdown
+            populateChefFilter(recipes); // Populate the "Chef" dropdown
         })
         .catch(error => console.error('Error fetching recipes:', error));
 }
@@ -91,27 +92,26 @@ document.getElementById('close-modal').addEventListener('click', closeModal);
 function filterRecipes() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const selectedCategory = document.getElementById('category-filter').value;
+    const selectedChef = document.getElementById('chef-filter').value;
     
     const filteredRecipes = window.recipes.filter(recipe => {
         const matchesSearch = recipe.title.toLowerCase().includes(searchTerm) || recipe.name.toLowerCase().includes(searchTerm);
         const matchesCategory = selectedCategory ? recipe.category === selectedCategory : true;
-
-        return matchesSearch && matchesCategory;
+        const matchesChef = selectedChef ? recipe.name === selectedChef : true;
+        
+        return matchesSearch && matchesCategory && matchesChef;
     });
 
-    // Display the filtered recipes
     displayRecipes(filteredRecipes);
 }
 
 // Function to populate the category dropdown
 function populateCategoryFilter(recipes) {
-    const categories = [...new Set(recipes.map(recipe => recipe.category))]; // Get unique categories
+    const categories = [...new Set(recipes.map(recipe => recipe.category))];
     const categoryFilter = document.getElementById('category-filter');
     
-    // Clear the existing options
     categoryFilter.innerHTML = '<option value="">All Categories</option>';
     
-    // Add category options to the dropdown
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -120,9 +120,25 @@ function populateCategoryFilter(recipes) {
     });
 }
 
+// Function to populate the chef dropdown
+function populateChefFilter(recipes) {
+    const chefs = [...new Set(recipes.map(recipe => recipe.name))];
+    const chefFilter = document.getElementById('chef-filter');
+    
+    chefFilter.innerHTML = '<option value="">All Chefs</option>';
+
+    chefs.forEach(chef => {
+        const option = document.createElement('option');
+        option.value = chef;
+        option.textContent = chef;
+        chefFilter.appendChild(option);
+    });
+}
+
 // Add event listeners for the search input and category filter
 document.getElementById('search-input').addEventListener('input', filterRecipes);
 document.getElementById('category-filter').addEventListener('change', filterRecipes);
+document.getElementById('chef-filter').addEventListener('change', filterRecipes);
 
 // Call the fetchRecipes function to load the data when the page is ready
 document.addEventListener('DOMContentLoaded', fetchRecipes);
