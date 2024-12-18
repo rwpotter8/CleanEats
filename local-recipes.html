@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
+    <title>Local Recipes</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -12,13 +12,14 @@
             <h1>CleanEats</h1>
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="local-recipes.html">Local Recipes</a></li>
+                <li><a href="api-recipes.html">API Recipes</a></li>
                 <li><a href="submit-recipe.html">Submit Recipe</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main-container"></div>
+    <div class="main-container">
         <main>
             <!-- Search and Category Filter Section -->
             <div class="search-container">
@@ -44,7 +45,8 @@
                 <div class="modal-content">
                     <span id="close-modal" class="close">&times;</span>
                     <h2 id="modal-title"></h2>
-                    <p id="modal-author"></p>
+                    <p id="modal-chef"></p>
+                    <p id="modal-summary"></p>
                     <p id="modal-prepTime"></p>
                     <p id="modal-cookTime"></p>
                     <h3>Ingredients</h3>
@@ -60,6 +62,6 @@
         <p>&copy; 2024 CleanEats. All rights reserved.</p>
     </footer>
 
-    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/local-scripts.js"></script>
 </body>
 </html>

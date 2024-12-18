@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Recipes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<div>
+    <header>
+        <nav>
+            <h1>CleanEats</h1>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="local-recipes.html">Local Recipes</a></li>
+                <li><a href="api-recipes.html" class="active">API Recipes</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container"></div>
+        <main>
+            <!-- Search and Category Filter Section -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search recipes..." />
+                
+                <div class="filters">
+                    <div class="dropdown">
+                        <button class="dropbtn">Filter by Category</button>
+                        <div class="dropdown-content">
+                            <a href="#" data-category="all">All</a>
+                            <a href="#" data-category="main course">Main Course</a>
+                            <a href="#" data-category="side dish">Side Dish</a>
+                            <a href="#" data-category="dessert">Dessert</a>
+                            <a href="#" data-category="appetizer">Appetizer</a>
+                            <a href="#" data-category="salad">Salad</a>
+                            <a href="#" data-category="bread">Bread</a>
+                            <a href="#" data-category="breakfast">Breakfast</a>
+                            <a href="#" data-category="soup">Soup</a>
+                            <a href="#" data-category="sauce">Sauce</a>
+                            <a href="#" data-category="fingerfood">Fingerfood</a>
+                            <a href="#" data-category="drink">Drink</a>
+                        </div>
+                    </div>
+                </div>
+
+            <div id="recipe-list" class="recipe-list">
+                <!-- Recipe cards will be displayed here -->
+            </div>
+
+            <!-- Recipe Modal -->
+            <div id="recipe-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close">&times;</span>
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-chef"></p>
+                    <p id="modal-summary"></p>
+                    <p id="modal-prepTime"></p>
+                    <p id="modal-cookTime"></p>
+                    <h3>Ingredients</h3>
+                    <p id="modal-ingredients"></p>
+                    <h3>Instructions</h3>
+                    <p id="modal-instructions"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CleanEats. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/api-scripts.js"></script>
+</body>
+</html>
