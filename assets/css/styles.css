@@ -13,8 +13,8 @@ body {
     line-height: 1.6;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures the footer is pushed to the bottom */
-    justify-content: flex-start; /* Ensures content is at the top */
+    min-height: 100vh;
+    justify-content: flex-start;
 }
 
 /* Navbar Styling */
@@ -39,7 +39,7 @@ nav {
 }
 
 nav .logo img {
-    height: 40px; /* Adjust logo size */
+    height: 40px;
 }
 
 nav h1 {
@@ -72,15 +72,15 @@ nav ul li a:hover {
     background-color: #45a049;
 }
 
-/* Welcome Section (Card Design) */
+/* Welcome Styling */
 #welcome {
     max-width: 900px;
-    margin: 8rem 4rem; /* Center horizontally and adjust top margin for navbar */
+    margin: 8rem 4rem;
     padding: 40px;
     text-align: center;
-    background-color: green; /* Light card background */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    background-color: green;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 #welcome h2 {
@@ -96,19 +96,27 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
+@media only screen and (max-width: 600px) {
+    #welcome {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* Footer Styling */
 footer {
     background-color: darkgreen;
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Pushes footer to the bottom */
+    margin-top: auto;
     width: 100%;
 }
 
 /* Form Container Styling */
 .form-container {
-    margin: 8rem auto 2rem auto; /* Adjust top margin for fixed navbar */
+    margin: 8rem auto 2rem auto;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -117,30 +125,28 @@ footer {
     max-width: 800px;
 }
 
-/* Embedded Google Form Styling */
 iframe {
     width: 100%;
     height: 800px;
     border: none;
 }
 
-/* Main container around content */
+/* Main container Styling */
 .main-container {
-    padding-top: 80px; /* Prevent content from being hidden under the navbar */
+    padding-top: 80px;
     margin: 0 auto;
     max-width: 1200px;
 }
 
-/* Recipe Cards Container */
+/* Recipe Cards Styling */
 .recipe-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust card size */
-    gap: 20px; /* Space between cards */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
     padding: 20px;
-    margin-top: 20px; /* Margin to ensure cards don't overlap */
+    margin-top: 20px;
 }
 
-/* Styling for individual recipe cards */
 .recipe-card {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -151,7 +157,7 @@ iframe {
 }
 
 .recipe-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
 }
 
 .recipe-card h3 {
@@ -164,32 +170,248 @@ iframe {
     color: #555;
 }
 
-/* Search and Category Filter Section */
+/* Search and Category Filter Styles */
 .search-container {
     display: flex;
-    justify-content: center;  /* Center the search input and filter */
+    justify-content: center;
     align-items: center;
-    margin: 30px 0;  /* Adjust top/bottom margin for spacing */
+    margin-top: 50px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
-/* Search Input */
 #search-input {
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 60%;
+    max-width: 300px;
 }
 
-/* Category Filter Dropdown */
 #category-filter {
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 25%;  /* Adjust width to make it centered */
+    width: 25%;
+    max-width: 200px;
+}
+
+/* For smaller devices like phones (less than 600px wide) */
+@media only screen and (max-width: 600px) {
+    body {
+        padding-top: 100px; /* Increased top padding for smaller screens */
+    }
+
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #search-input, #category-filter {
+        width: 90%; /* Ensure both inputs take up most of the screen */
+    }
+
+    #search-input {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    #category-filter {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+ul,
+ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.modal-prepTime,
+.modal-cookTime {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+#modal-cookTime {
+    margin-bottom: 20px;
+}
+
+.modal-author {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-header,
+#modal-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#modal-author {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.modal-content h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recipe-card h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+
+/* For smaller devices like phones (less than 600px wide) */
+@media only screen and (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav h1 {
+        font-size: 1.5rem;
+    }
+
+
+
+    .recipe-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .recipe-card {
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    #search-input, #category-filter {
+        width: 100%;
+    }
+
+    #search-input {
+        padding: 12px;
+    }
+
+    .modal-header, .modal-body {
+        font-size: 1.5rem;
+    }
+
+    iframe {
+        height: 500px;
+    }
+}
+
+/* For larger tablets and above (up to 768px) */
+@media only screen and (max-width: 768px) {
+    .recipe-list {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+
+    iframe {
+        height: 600px;
+    }
 }
