@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const recipesUrl = 'https://script.google.com/macros/s/AKfycbxTDfmlJO7CqYQHHY8rKq_0S2rzD8ojLfbISs0V42TkkIddpJLbCY6ti3rpuQfjTVf9nA/exec';
+    const recipesUrl = 'redacted';
 
     // Fetch recipe data from Apps Script
     function fetchLocalRecipes() {

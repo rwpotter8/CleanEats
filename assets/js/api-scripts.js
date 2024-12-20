@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_KEY = "f91447e0e52a4908803210014bdbf869";
+    const API_KEY = "redacted";
     const recipeListContainer = document.getElementById("recipe-list");
     const searchInput = document.getElementById("search-input");
     const recipeModal = document.getElementById("recipe-modal");
