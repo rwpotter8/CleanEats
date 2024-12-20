@@ -8,60 +8,60 @@
 </head>
 <body>
     <header>
-        <nav>
-            <h1>CleanEats</h1>
-            <ul>
+        <nav class="navbar">
+            <a href="home.html" class="no-link"><h1 class="navbar-title">CleanEats</h1></a>
+            <ul class="navbar-links">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="local-recipes.html">Local Recipes</a></li>
                 <li><a href="api-recipes.html">API Recipes</a></li>
                 <li><a href="submit-recipe.html">Submit Recipe</a></li>
             </ul>
+            <button class="navbar-toggle" aria-label="Toggle navigation menu">&#9776;</button>
         </nav>
-    </header>
+    </header> 
 
-    <div class="main-container">
-        <main>
-            <!-- Search and Category Filter Section -->
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search recipes..." />
-                
-                <select id="category-filter">
-                    <option value="">All Categories</option>
-                    <!-- Categories will be populated here dynamically -->
-                </select>
+    <main>
+        <!-- Search and Category Filter Section -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search recipes..." />
+            
+            <select id="category-filter">
+                <option value="">All Categories</option>
+                <!-- Categories will be populated here dynamically -->
+            </select>
 
-                <select id="chef-filter">
-                    <option value="">All Chefs</option>
-                    <!-- Chef names will be populated here dynamically -->
-                </select>
+            <select id="chef-filter">
+                <option value="">All Chefs</option>
+                <!-- Chef names will be populated here dynamically -->
+            </select>
+        </div>
+        
+        <div id="recipe-list" class="recipe-list">
+            <!-- Recipe cards will be displayed here -->
+        </div> 
+        
+        <!-- Recipe Modal -->
+        <div id="recipe-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-chef"></p>
+                <p id="modal-summary"></p>
+                <p id="modal-prepTime"></p>
+                <p id="modal-cookTime"></p>
+                <h3>Ingredients</h3>
+                <p id="modal-ingredients"></p>
+                <h3>Instructions</h3>
+                <p id="modal-instructions"></p>
             </div>
-            
-            <div id="recipe-list" class="recipe-list">
-                <!-- Recipe cards will be displayed here -->
-            </div> 
-            
-            <!-- Recipe Modal -->
-            <div id="recipe-modal" class="modal">
-                <div class="modal-content">
-                    <span id="close-modal" class="close">&times;</span>
-                    <h2 id="modal-title"></h2>
-                    <p id="modal-chef"></p>
-                    <p id="modal-summary"></p>
-                    <p id="modal-prepTime"></p>
-                    <p id="modal-cookTime"></p>
-                    <h3>Ingredients</h3>
-                    <p id="modal-ingredients"></p>
-                    <h3>Instructions</h3>
-                    <p id="modal-instructions"></p>
-                </div>
-            </div>
-        </main>
-    </div>
+        </div>
+    </main>
     
     <footer>
         <p>&copy; 2024 CleanEats. All rights reserved.</p>
     </footer>
 
     <script src="assets/js/local-scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

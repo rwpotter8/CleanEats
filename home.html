@@ -7,30 +7,44 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- Navbar -->
     <header>
-        <nav>
-            <h1>CleanEats</h1>
-            <ul>
+        <nav class="navbar">
+            <a href="home.html" class="no-link"><h1 class="navbar-title">CleanEats</h1></a>
+            <ul class="navbar-links">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="local-recipes.html">Local Recipes</a></li>
                 <li><a href="api-recipes.html">API Recipes</a></li>
                 <li><a href="submit-recipe.html">Submit Recipe</a></li>
             </ul>
+            <button class="navbar-toggle" aria-label="Toggle navigation menu">&#9776;</button>
         </nav>
-    </header>
-
+    </header>    
+    
     <main>
-        <!-- Welcome/About Section -->
-        <div id="welcome">
+        <!-- Welcome Section -->
+        <div id="home-section">
             <h2>Welcome to CleanEats</h2>
             <p>Our platform provides delicious and healthy recipes that are easy to make. Whether you're looking for breakfast, lunch, dinner, or snacks, we've got you covered with a variety of options!</p>
         </div> 
+
+        <!-- CTA Local Recipes Section -->
+        <a href="local-recipes.html"><div id="home-section">
+            <h2>Browse Family Recipes</h2>
+            <p>Click here to browse recipes from you and your family!</p>
+        </div></a> 
+
+        <!-- CTA API Recipes Section -->
+        <a href="api-recipes.html"><div id="home-section">
+            <h2>Browse Vegan Recipes</h2>
+            <p>Click here to browse recipes from Spoonacular API!</p>
+        </div></a> 
     </main>  
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 CleanEats. All rights reserved.</p>
     </footer>
+
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

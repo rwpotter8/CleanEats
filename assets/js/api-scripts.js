@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_KEY = "c38edf7366a448a7afce587cb6fca9a2";
+    const API_KEY = "f91447e0e52a4908803210014bdbf869";
     const recipeListContainer = document.getElementById("recipe-list");
     const searchInput = document.getElementById("search-input");
     const recipeModal = document.getElementById("recipe-modal");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchRecipes(query = "", category = "") {
         try {
             // Change the 'cuisine' filter to 'type' (category) filter
-            const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&type=${category}&number=10`;
+            const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&type=${category}&number=12`;
             const response = await fetch(url);
             const data = await response.json();
             displayRecipes(data.results);
