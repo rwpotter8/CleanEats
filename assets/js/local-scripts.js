@@ -45,11 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if prepTime and cookTime are defined, otherwise set them as 'Not available'
         const prepTime = recipe.prepTime ? recipe.prepTime : "Not available";
         const cookTime = recipe.cookTime ? recipe.cookTime : "Not available";
-        const summary = recipe.summary ? recipe.summary : "No summary available.";
+        const notes = recipe.notes ? recipe.notes : "No notes available.";
 
         document.getElementById('modal-title').textContent = recipe.title;
         document.getElementById('modal-chef').textContent = `By: ${recipe.name}`;
-        document.getElementById('modal-summary').textContent = `Summary: ${summary}`;
+        document.getElementById('modal-notes').textContent = `Notes: ${notes}`;
         document.getElementById('modal-prepTime').textContent = `Prep Time: ${prepTime}`;
         document.getElementById('modal-cookTime').textContent = `Cook Time: ${cookTime}`;
 

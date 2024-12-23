@@ -4,24 +4,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search-input");
     const recipeModal = document.getElementById("recipe-modal");
     const closeModal = document.getElementById("close-modal");
+    const dropdownContent = document.querySelector(".dropdown-content");
+    const categoryButton = document.querySelector(".dropbtn");
 
-    // Fetch recipes from Spoonacular API
-    async function fetchRecipes(query = "", category = "") {
+    let currentPage = 1;
+    let isLoading = false;
+    let currentQuery = "";
+    let currentCategory = "all";
+
+    // Fetch recipes based on the query and category
+    async function fetchRecipes(query = "", category = "", page = 1) {
+        if (isLoading) return;
+        isLoading = true;
+
         try {
-            // Change the 'cuisine' filter to 'type' (category) filter
-            const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&type=${category}&number=12`;
+            const offset = (page - 1) * 12;
+            const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&type=${category}&diet=vegan&number=12&offset=${offset}`;
             const response = await fetch(url);
             const data = await response.json();
             displayRecipes(data.results);
         } catch (error) {
             console.error("Error fetching recipes:", error);
+        } finally {
+            isLoading = false;
         }
     }
 
-    // Display recipes as cards
+    // Display recipes on the page
     function displayRecipes(recipes) {
-        recipeListContainer.innerHTML = ""; // Clear existing recipes
-        if (recipes.length === 0) {
+        if (recipes.length === 0 && currentPage === 1) {
             recipeListContainer.innerHTML = "<p>No recipes found. Try a different search or category.</p>";
             return;
         }
@@ -38,52 +49,94 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Open recipe modal with detailed information
+    // Fetch and display recipe details in a modal
     async function openRecipeModal(recipe) {
         try {
             const response = await fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${API_KEY}`);
             const data = await response.json();
+
             document.getElementById("modal-title").textContent = data.title;
             document.getElementById("modal-chef").textContent = `Chef: ${data.sourceName || "N/A"}`;
-            document.getElementById("modal-summary").textContent = data.summary || "No summary available.";
-            document.getElementById("modal-prepTime").textContent = `Prep time: ${data.preparationMinutes} minutes`;
-            document.getElementById("modal-cookTime").textContent = `Cook time: ${data.cookingMinutes} minutes`;
+            document.getElementById("modal-summary").textContent = data.summary.replace(/<[^>]+>/g, "") || "No summary available.";
 
-            // Display ingredients
-            const ingredientsList = data.extendedIngredients.map(ingredient => ingredient.original).join(", ");
-            document.getElementById("modal-ingredients").textContent = ingredientsList;
+            const ingredientsList = data.extendedIngredients.map(ingredient => `<li>${ingredient.original}</li>`).join("");
+            document.getElementById("modal-ingredients").innerHTML = `<ul>${ingredientsList}</ul>`;                
 
-            // Display instructions
-            document.getElementById("modal-instructions").textContent = data.instructions || "No instructions available.";
+            const modalInstructions = document.getElementById("modal-instructions");
+            modalInstructions.innerHTML = ''; // Clear previous content
+            
+            if (data.analyzedInstructions && data.analyzedInstructions.length > 0) {
+                const ol = document.createElement('ol');
+            
+                data.analyzedInstructions[0].steps.forEach(step => {
+                    const li = document.createElement('li');
+                    li.textContent = step.step.trim();
+                    ol.appendChild(li);
+                });
+            
+                modalInstructions.appendChild(ol);
+            } else {
+                modalInstructions.innerHTML = '<p>No instructions available.</p>';
+            }                                
 
-            // Open modal
             recipeModal.style.display = "block";
         } catch (error) {
             console.error("Error fetching recipe details:", error);
         }
     }
 
-    // Close the modal
+    // Close modal
     closeModal.addEventListener("click", () => {
         recipeModal.style.display = "none";
     });
 
-    // Event listener for search input
+    // Handle search input
     searchInput.addEventListener("input", () => {
-        const category = document.querySelector(".dropdown-content a.selected")?.dataset.category || ""; // Get selected category
-        fetchRecipes(searchInput.value, category); // Fetch based on search query and selected category
+        currentQuery = searchInput.value;
+        currentPage = 1;
+        recipeListContainer.innerHTML = "";
+        fetchRecipes(currentQuery, currentCategory, currentPage);
     });
 
-    // Event listener for category filter links (dropdown)
+    // Handle category selection from the dropdown
     document.querySelectorAll(".dropdown-content a").forEach(link => {
         link.addEventListener("click", (event) => {
-            event.preventDefault(); // Prevent default link behavior
-            document.querySelectorAll(".dropdown-content a").forEach(a => a.classList.remove("selected")); // Remove 'selected' class from all
-            link.classList.add("selected"); // Add 'selected' class to the clicked link
-            const category = link.dataset.category || "";
-            fetchRecipes(searchInput.value, category); // Fetch based on selected category
+            event.preventDefault();
+            
+            // Reset selected category visually
+            document.querySelectorAll(".dropdown-content a").forEach(a => a.classList.remove("selected"));
+            link.classList.add("selected");
+            
+            currentCategory = link.dataset.category || "all"; 
+            currentPage = 1;
+            recipeListContainer.innerHTML = ""; 
+            fetchRecipes(currentQuery, currentCategory, currentPage);
+
+            // Close dropdown after selection
+            dropdownContent.classList.remove("show");
         });
     });
 
+    // Close dropdown if user clicks outside of it
+    window.addEventListener("click", (event) => {
+        if (!dropdownContent.contains(event.target) && event.target !== categoryButton) {
+            dropdownContent.classList.remove("show");
+        }
+    });
+
+    // Toggle dropdown visibility
+    categoryButton.addEventListener("click", () => {
+        dropdownContent.classList.toggle("show");
+    });
+
+    // Infinite scroll functionality
+    window.addEventListener("scroll", () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && !isLoading) {
+            currentPage++;
+            fetchRecipes(currentQuery, currentCategory, currentPage);
+        }
+    });
+
+    // Initial fetch
     fetchRecipes();
 });

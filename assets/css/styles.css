@@ -183,6 +183,7 @@ iframe {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 25px;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -212,7 +213,7 @@ iframe {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
@@ -222,19 +223,15 @@ iframe {
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 0 auto;
-    padding: 30px;
+    margin: 5% auto;
+    padding: 20px;
     border-radius: 10px;
     width: 90%;
-    max-width: 700px;
-    max-height: 80vh;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -293,10 +290,18 @@ ol {
     padding-left: 20px;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
 .modal-prepTime,
 .modal-cookTime {
     font-size: 1rem;
     margin: 10px 0;
+}
+
+#modal-prepTime {
+    margin-bottom: 5px;
 }
 
 #modal-cookTime {
@@ -328,14 +333,19 @@ ol {
     margin-bottom: 20px;
 }
 
-#modal-summary {
+#modal-notes {
     font-size: 1rem;
     margin-bottom: 20px;
+}
+
+#modal-summary {
+    font-size: 1rem;
 }
 
 .modal-content h3 {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .recipe-card h3 {
@@ -360,6 +370,7 @@ ol {
     text-align: left;
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
 .filters .dropdown:hover .dropbtn {
@@ -400,6 +411,7 @@ ol {
 /* For smaller devices like phones (less than 600px wide) */
 @media only screen and (max-width: 600px) {
     .navbar-links {
+        z-index: 1;
         flex-direction: column;
         display: none;
         gap: 10px;
@@ -412,6 +424,7 @@ ol {
     }
 
     .navbar-links li {
+        z-index: 1000;
         margin: 5px;
         padding: 0;
         display: block;
@@ -495,6 +508,39 @@ ol {
 
 /* For larger tablets and above (up to 768px) */
 @media only screen and (max-width: 768px) {
+    .navbar-links {
+        flex-direction: column;
+        display: none;
+        gap: 10px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #228B22; /* Forest Green */
+        padding: 10px;
+    }
+
+    .navbar-links li {
+        margin: 5px;
+        padding: 0;
+        display: block;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-links li a {
+        display: block;
+        padding: 10px 20px; 
+        text-decoration: none; 
+        color: white; 
+    }
+    
     .recipe-list {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
